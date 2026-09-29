@@ -1,0 +1,75 @@
+name: CI — Mental Health Score Predictor
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    name: Lint, Train & Test
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+
+      - name: Install dev dependencies
+        working-directory: backend
+        run: pip install -r requirements-dev.txt
+
+      - name: Install ML dependencies (for train step)
+        run: pip install scikit-learn pandas numpy joblib matplotlib seaborn
+
+      - name: Lint with ruff
+        run: python -m ruff check ml/ backend/app/
+
+      - name: Generate synthetic data
+        run: python scripts/generate_synthetic_data.py
+
+      - name: Train model (produces models/pipeline.joblib)
+        run: python ml/train.py
+
+      - name: Verify model artifact loads
+        run: |
+          python -c "
+          import joblib, pathlib
+          p = pathlib.Path('models/pipeline.joblib')
+          assert p.exists(), f'Artifact missing: {p}'
+          pipeline = joblib.load(p)
+          import pandas as pd
+          row = pd.DataFrame([{
+              'Physical_Activity_Hours': 1.5,
+              'Sleep_Hours': 7.0,
+              'Screen_Time_Hours': 4.0,
+              'Stress_Level': 'Medium',
+              'Country': 'India',
+              'Platform': 'Instagram',
+          }])
+          pred = pipeline.predict(row)
+          assert 0 <= pred[0] <= 100, f'Score out of range: {pred[0]}'
+          print(f'✅ Artifact OK — score={pred[0]:.1f}')
+          "
+
+      - name: Run tests with coverage
+        run: |
+          python -m pytest backend/tests/ \
+            --cov=backend/app \
+            --cov=ml \
+            --cov-report=term-missing \
+            --cov-fail-under=70 \
+            -v
+
+      - name: Upload coverage report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-report
+          path: docs/coverage/

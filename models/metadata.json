@@ -1,0 +1,112 @@
+{
+  "model_name": "Random Forest",
+  "training_date": "2026-09-29T15:28:50.855612+00:00",
+  "sklearn_version": "1.9.1",
+  "features": [
+    "Physical_Activity_Hours",
+    "Sleep_Hours",
+    "Screen_Time_Hours",
+    "Stress_Level",
+    "Country",
+    "Platform"
+  ],
+  "numeric_features": [
+    "Physical_Activity_Hours",
+    "Sleep_Hours",
+    "Screen_Time_Hours"
+  ],
+  "numeric_ranges": {
+    "Physical_Activity_Hours": {
+      "min": 0.0,
+      "max": 10.0
+    },
+    "Sleep_Hours": {
+      "min": 0.0,
+      "max": 12.0
+    },
+    "Screen_Time_Hours": {
+      "min": 0.0,
+      "max": 16.0
+    }
+  },
+  "ordinal_feature": "Stress_Level",
+  "ordinal_categories": [
+    "Low",
+    "Medium",
+    "High"
+  ],
+  "nominal_features": [
+    "Physical_Activity_Hours",
+    "Sleep_Hours",
+    "Screen_Time_Hours"
+  ],
+  "allowed_countries": [
+    "India",
+    "USA",
+    "UK",
+    "Canada",
+    "Australia",
+    "Germany",
+    "Brazil",
+    "Japan",
+    "South Korea",
+    "Other"
+  ],
+  "allowed_platforms": [
+    "Instagram",
+    "Twitter",
+    "Facebook",
+    "TikTok",
+    "YouTube",
+    "Reddit",
+    "LinkedIn",
+    "None"
+  ],
+  "score_bands": [
+    {
+      "label": "Thriving",
+      "min": 80,
+      "max": 100,
+      "color": "#2ecc71"
+    },
+    {
+      "label": "Good",
+      "min": 60,
+      "max": 79,
+      "color": "#27ae60"
+    },
+    {
+      "label": "Moderate",
+      "min": 40,
+      "max": 59,
+      "color": "#f39c12"
+    },
+    {
+      "label": "Needs Attention",
+      "min": 20,
+      "max": 39,
+      "color": "#e67e22"
+    },
+    {
+      "label": "Seek Support",
+      "min": 0,
+      "max": 19,
+      "color": "#c0392b"
+    }
+  ],
+  "score_messages": {
+    "Thriving": "You seem to be in great shape! Keep up those healthy habits.",
+    "Good": "You're doing well. Small, consistent habits will keep you here.",
+    "Moderate": "Some areas could use attention. Consider prioritising sleep and reducing stress.",
+    "Needs Attention": "It looks like some lifestyle factors may be affecting your wellbeing. Please consider speaking to someone you trust or a professional.",
+    "Seek Support": "Your responses suggest you may be going through a tough time. Please reach out to a mental health professional or a helpline listed below."
+  },
+  "metrics": {
+    "r2": 0.8545,
+    "mae": 4.8635,
+    "rmse": 6.3409,
+    "cv_r2": 0.858479044291669
+  },
+  "is_synthetic_data": true,
+  "data_warning": "\u26a0\ufe0f  Trained on SYNTHETIC data. Results are for demonstration only. Replace data/raw/mental_health_data.csv with a real dataset and run `make train`."
+}

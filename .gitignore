@@ -1,0 +1,54 @@
+# ── Python ──────────────────────────────────────────────────────────────────
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+dist/
+build/
+*.egg
+
+# ── Virtual environments ─────────────────────────────────────────────────────
+.venv/
+venv/
+env/
+ENV/
+
+# ── Environment files ────────────────────────────────────────────────────────
+.env
+# .env.example is intentionally tracked
+
+# ── IDE / editor ─────────────────────────────────────────────────────────────
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# ── OS ───────────────────────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ── Test / coverage artefacts ────────────────────────────────────────────────
+.pytest_cache/
+htmlcov/
+.coverage
+*.coverage
+docs/coverage/
+
+# ── Jupyter ──────────────────────────────────────────────────────────────────
+.ipynb_checkpoints/
+
+# ── Ruff ─────────────────────────────────────────────────────────────────────
+.ruff_cache/
+
+# ── Large raw data files (check in only processed/small samples) ──────────────
+# data/raw/*.csv   # ← uncomment if your real dataset is large
+
+# ── Model artefacts ──────────────────────────────────────────────────────────
+# models/pipeline.joblib  # intentionally tracked (synthetic demo artefact committed)
+# Delete the above comment and uncomment the line if artefact is too large for git
+
+# ── Logs ─────────────────────────────────────────────────────────────────────
+*.log
