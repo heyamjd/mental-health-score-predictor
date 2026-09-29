@@ -1,6 +1,6 @@
 # Mental Health Score Predictor
 
-[![CI](https://github.com/your-org/mental-health-score-predictor/actions/workflows/ci.yml/badge.svg)](https://github.com/your-org/mental-health-score-predictor/actions)
+[![CI](https://github.com/heyamjd/mental-health-score-predictor/actions/workflows/ci.yml/badge.svg)](https://github.com/heyamjd/mental-health-score-predictor/actions)
 [![Python Version](https://img.shields.io/badge/python-3.11%20%7C%203.12%20%7C%203.13-blue.svg)](https://www.python.org/)
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.111.0-009688.svg?logo=fastapi)](https://fastapi.tiangolo.com)
 [![Scikit-Learn](https://img.shields.io/badge/scikit--learn-1.4.2-F7931E.svg?logo=scikitlearn)](https://scikit-learn.org)
